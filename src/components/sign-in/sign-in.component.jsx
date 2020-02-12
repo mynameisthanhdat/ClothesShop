@@ -1,10 +1,13 @@
 import React from 'react';
 
+import GoogleLogin from 'react-google-login';
+
+import CustomButton from '../../components/custom-button/custom-button';
+import FormInput from '../form-input/form-input.component'
+
+import { signInWithGoogle } from '../../firebase/firebase.utils'
 import './sign-in.style.scss';
 
-import FormInput from '../form-input/form-input.component';
-
-import CustomButton from '../custom-button/custom-button'
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
@@ -37,19 +40,32 @@ class SignIn extends React.Component {
                         type="email"
                         value={this.state.email}
                         handleChange={this.handleChange}
-                        label='Email'
+                        label="Email"
                         required
                     />
+
                     <FormInput
                         name="password"
                         type="password"
                         value={this.state.password}
                         handleChange={this.handleChange}
-                        label='Password'
+                        label="Password"
                         required
                     />
 
-                    <CustomButton type='submit'> SIGN IN </CustomButton>
+
+                    <CustomButton type='submit'>SIGN IN</CustomButton>
+                    {/* <CustomButton onClick={signInWithGoogle}>
+                        {''}
+                        Sign in with google {''}
+                    </CustomButton> */}
+                    <GoogleLogin
+                        clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                        buttonText="Login"
+                        // onSuccess={responseGoogle}
+                        // onFailure={responseGoogle}
+                        cookiePolicy={'single_host_origin'}
+                    />
                 </form>
             </div>
         );
